@@ -1,0 +1,124 @@
+<title>Inicio</title>
+{% extends "base.html"%}
+{% load static %}
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{% static '/CSS/Main.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'static\traductor_ls\animaciones.css' %}">
+    <script src="{% static '/JS/Main.js' %}"></script>
+    <script type="text/javascript" src="index.js"></script>
+  {% block content %}
+  <br><br><br><br>
+  <section class="zona1">
+    <div class="text-header">
+      <div class="container">
+          <div class= "row justify-content-between">
+            <div class="col-8">
+              <br><br><br><br>
+              <h2><span> BIENVENIDOS </span></h2>
+              <p>Los lenguajes de señas son lenguajes visuales 
+                que se comunican a través de movimientos manuales, 
+                faciales y corporales. Aprender un segundo idioma no solo es bueno para tu cerebro;
+                también es una excelente manera de mejorar sus habilidades de comunicación.
+              </p>
+            </div>
+            <div class="col-4">
+              <img src='..\static\Img\PERSONAJE1.svg'>
+            </div>
+          </div>
+        </div>
+      </div>
+  </section>
+  <body>
+    <div class="col-12" >
+        <div class="row mb-1">
+            <div class="col-7 mt-4 pb-4" >
+              <div class=" text-left col-4 " style="width: 570px" > 
+                <p class="text-justify">
+                  
+                {{dic}}{{Descripcion1}}
+                </p>
+              </div>
+              
+              <div class="container " id="imagenes">
+                <div class="row mb-1">
+                  <div class="col-12 ">
+                    <img src="{% static 'img/A.png' %}"  class="imagenes2" type="button" onclick="cargarImagen('letraa')" onmouseover="cargarImagen('letraa')">
+                    <img src="{% static 'img/B.png' %}" class="imagenes2"  type="button" onclick="cargarImagen('letrab')" onmouseover="cargarImagen('letrab')">
+                    <img src="{% static 'img/C.png' %}" class="imagenes2" type="button" onclick="cargarImagen('letrac')" onmouseover="cargarImagen('letrac')">
+                    <img src="{% static 'img/D.png' %}" class="imagenes2" type="button" onclick="cargarImagen('letrad')" onmouseover="cargarImagen('letrad')">
+                  </div>
+                </div>
+                <div class="row mb-1">
+                  <div class="col-12">
+                    <img src="{% static 'img/E.png' %}" class="imagenes2" type="button" onclick="cargarImagen('letrae')" onmouseover="cargarImagen('letrae')">
+                    <img src="{% static 'img/F.png' %}" class="imagenes2" type="button" onclick="cargarImagen('letraf')" onmouseover="cargarImagen('letraf')">
+                    <img src="{% static 'img/G.png' %}" class="imagenes2" type="button" onclick="cargarImagen('letrag')" onmouseover="cargarImagen('letrag')">
+                    <img src="{% static 'img/H.png' %}" class="imagenes2" type="button" onclick="cargarImagen('letrah')" onmouseover="cargarImagen('letrah')">
+                  </div>
+                </div>
+                <div class="row mb-1">
+                  <div class="col-12">
+                    <img src="{% static 'img/I.png' %}" class="imagenes2" type="button" onclick="cargarImagen('letrai')" onmouseover="cargarImagen('letrai')">
+                    <img src="{% static 'img/J.png' %}" class="imagenes2" type="button" onclick="cargarImagen('letraj')" onmouseover="cargarImagen('letraj')">
+                    <img src="{% static 'img/K.png' %}" class="imagenes2" type="button" onclick="cargarImagen('letrak')" onmouseover="cargarImagen('letrak')">
+                    <img src="{% static 'img/L.png' %}" class="imagenes2" type="button" onclick="cargarImagen('letral')" onmouseover="cargarImagen('letral')">
+                  </div>
+                </div>
+                <div class="row mb-1">
+                  <div class="col-12">
+                    <img src="{% static 'img/M.png' %}" class="imagenes2" type="button" onclick="cargarImagen('letram')" onmouseover="cargarImagen('letram')">
+                    <img src="{% static 'img/N.png' %}" class="imagenes2" type="button" onclick="cargarImagen('letran')" onmouseover="cargarImagen('letran')">
+                    <img src="{% static 'img/NE.png' %}"class="imagenes2"  type="button" onclick="cargarImagen('letrane')" onmouseover="cargarImagen('letrane')">
+                    <img src="{% static 'img/O.png' %}" class="imagenes2" type="button" onclick="cargarImagen('letrao')" onmouseover="cargarImagen('letrao')">
+                  </div>
+                </div>
+                <div class="row mb-1">
+                  <div class="col-12">
+                    <img src="{% static 'img/P.png' %}" class="imagenes2" type="button" onclick="cargarImagen('letrap')" onmouseover="cargarImagen('letrap')">
+                    <img src="{% static 'img/Q.png' %}" class="imagenes2" type="button" onclick="cargarImagen('letraq')" onmouseover="cargarImagen('letraq')">
+                    <img src="{% static 'img/R.png' %}" class="imagenes2" type="button" onclick="cargarImagen('letrar')" onmouseover="cargarImagen('letrar')">
+                    <img src="{% static 'img/S.png' %}" class="imagenes2" type="button" onclick="cargarImagen('letras')" onmouseover="cargarImagen('letrass')">
+                  </div>
+                </div>
+                <div class="row mb-1">
+                  <div class="col-12">
+                    <img src="{% static 'img/T.png' %}" class="imagenes2" type="button" onclick="cargarImagen('letrat')" onmouseover="cargarImagen('letrat')">
+                    <img src="{% static 'img/U.png' %}" class="imagenes2" type="button" onclick="cargarImagen('letrau')" onmouseover="cargarImagen('letrau')">
+                    <img src="{% static 'img/V.png' %}" class="imagenes2" type="button" onclick="cargarImagen('letrav')" onmouseover="cargarImagen('letrav')">
+                    <img src="{% static 'img/W.png' %}" class="imagenes2" type="button" onclick="cargarImagen('letraw')" onmouseover="cargarImagen('letraw')">
+                  </div>
+                </div>
+                <div class="row mb-1">
+                  <div class="col-12">
+                    <img src="{% static 'img/X.png' %}" class="imagenes2" type="button" onclick="cargarImagen('letrax')" onmouseover="cargarImagen('letrax')">
+                    <img src="{% static 'img/Y.png' %}" class="imagenes2" type="button" onclick="cargarImagen('letray')" onmouseover="cargarImagen('letray')">
+                    <img src="{% static 'img/Z.png' %}" class="imagenes2" type="button" onclick="cargarImagen('letraz')" onmouseover="cargarImagen('letraz')">
+                    
+                    
+                  </div>
+                </div>
+              </div>
+            </div>  
+              <div class=" col-2" >
+                <div class="row">
+                  <div class="col-12 " style="width: 300px;">
+                    <div id="Imagen2 "  class="mx-auto"  >
+                      <img id="imagen"  src="{% static 'img/Mensaje.png' %}" style="padding-top: 120px;">
+                    </div>
+                      <p class="text-justify " style="width: 290px;"> 
+                        {{dic}}{{Descripcion2}}
+                      </p>
+                  </div>
+                </div>
+                
+              </div>
+        </div>
+    </div>
+    {% endblock %}
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>

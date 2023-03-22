@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'CSS/estilosHome.css' %}"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'static\traductor_ls\animaciones.css' %}">
+    <script src="{% static '/JS/Main.js' %}"></script>
+    <script type="text/javascript" src="index.js"></script>
+{% block content %}
+        <body>
+            <section class="header-background">
+                <br><br><br><br><br>
+                <h2>Sitio Web diseñado para traducir el abecedario del <br>
+                Lenguaje de Señas a texto</h2>
+                <br><br>
+            </section>
+            <div class="container-fluid text-center">
+                <div class="grid-container">
+                    <div class="video-container" class="itemVideo">
+                        <!--video autoplay class="video-element" id="video"></video!-->
+                        <img src='http://127.0.0.1:8080/video_input/video_stream' id="video">
+                    </div>
+                </div>
+            </div>
+            <script type="text/javascript">
+                var video = document.querySelector(".video-element");
+                var stop_button = false;
+                var go_button =false;
+                if (navigator.mediaDevices.getUserMedia) {
+                    
+                      navigator.mediaDevices.getUserMedia({ video: true })
+                        .then(function (stream) {
+                            document.getElementById("indicador_flecha").style.display = "none";
+                            document.getElementById("indicador_texto").style.display = "none";
+                            video.srcObject = stream;
+                    })
+                }
+                    
+                function stop(e) {
+                    this.stop_button = true;
+                    document.getElementById("indicador_flecha").style.display = "block";
+                    document.getElementById("indicador_texto").style.display = "block";	
+                      var stream = video.srcObject;
+                      var tracks = stream.getTracks();
+        
+                    for (var i = 0; i < tracks.length; i++) {
+                        var track = tracks[i];
+                        track.stop();
+                    }
+        
+                    video.srcObject = null;
+                }
+            </script>
+            <br><br><br>
+        </body>
+        
+{% endblock %}
