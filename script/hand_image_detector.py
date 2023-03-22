@@ -28,9 +28,34 @@ def hand_detection(image_path):
     for hand_landmarks in results.multi_hand_landmarks:
       print('hand_landmarks:', hand_landmarks)
       print(
-          f'Index finger tip coordinates: (',
+                f'meñique: (',
+                f'{hand_landmarks.landmark[mp_hands.HandLandmark.PINKY_TIP].x * image_width}, '
+                f'{hand_landmarks.landmark[mp_hands.HandLandmark.PINKY_PIP].y * image_hight})'
+            )
+      print(
+          f'anular: (',
+          f'{hand_landmarks.landmark[mp_hands.HandLandmark.RING_FINGER_TIP].x * image_width}, '
+          f'{hand_landmarks.landmark[mp_hands.HandLandmark.RING_FINGER_PIP].y * image_hight})'
+      )
+      print(
+          f'medio: (',
+          f'{hand_landmarks.landmark[mp_hands.HandLandmark.MIDDLE_FINGER_TIP].x * image_width}, '
+          f'{hand_landmarks.landmark[mp_hands.HandLandmark.MIDDLE_FINGER_PIP].y * image_hight})'
+      )
+      print(
+          f'indice: (',
           f'{hand_landmarks.landmark[mp_hands.HandLandmark.INDEX_FINGER_TIP].x * image_width}, '
-          f'{hand_landmarks.landmark[mp_hands.HandLandmark.INDEX_FINGER_TIP].y * image_hight})'
+          f'{hand_landmarks.landmark[mp_hands.HandLandmark.INDEX_FINGER_PIP].y * image_hight})'
+      )
+      print(
+          f'pulgar: (',
+          f'{hand_landmarks.landmark[mp_hands.HandLandmark.THUMB_TIP].x * image_width}, '
+          f'{hand_landmarks.landmark[mp_hands.HandLandmark.THUMB_IP].y * image_hight})'
+      )
+      print(
+          f'pulgar_interno: (',
+          f'{hand_landmarks.landmark[mp_hands.HandLandmark.THUMB_TIP].x * image_width}, '
+          f'{hand_landmarks.landmark[mp_hands.HandLandmark.THUMB_MCP].y * image_hight})'
       )
       mp_drawing.draw_landmarks(
           annotated_image, hand_landmarks, mp_hands.HAND_CONNECTIONS)

@@ -1,5 +1,7 @@
 import cv2
 import mediapipe as mp
+import numpy as np
+from mysite.Funciones.normalizacionCords import obtenerAngulos
 
 mp_drawing = mp.solutions.drawing_utils
 mp_hands = mp.solutions.hands
@@ -30,14 +32,38 @@ def hand_image():
         image_hight, image_width, _ = image.shape
         annotated_image = image.copy()
         for hand_landmarks in results.multi_hand_landmarks:
-            print('hand_landmarks:', hand_landmarks)
             print(
-                f'Index finger tip coordinates: (',
+                f'meñique: (',
+                f'{hand_landmarks.landmark[mp_hands.HandLandmark.PINKY_TIP].x * image_width}, '
+                f'{hand_landmarks.landmark[mp_hands.HandLandmark.PINKY_PIP].y * image_hight})'
+            )
+            print(
+                f'anular: (',
+                f'{hand_landmarks.landmark[mp_hands.HandLandmark.RING_FINGER_TIP].x * image_width}, '
+                f'{hand_landmarks.landmark[mp_hands.HandLandmark.RING_FINGER_PIP].y * image_hight})'
+            )
+            print(
+                f'medio: (',
+                f'{hand_landmarks.landmark[mp_hands.HandLandmark.MIDDLE_FINGER_TIP].x * image_width}, '
+                f'{hand_landmarks.landmark[mp_hands.HandLandmark.MIDDLE_FINGER_PIP].y * image_hight})'
+            )
+            print(
+                f'indice: (',
                 f'{hand_landmarks.landmark[mp_hands.HandLandmark.INDEX_FINGER_TIP].x * image_width}, '
-                f'{hand_landmarks.landmark[mp_hands.HandLandmark.INDEX_FINGER_TIP].y * image_hight})'
+                f'{hand_landmarks.landmark[mp_hands.HandLandmark.INDEX_FINGER_PIP].y * image_hight})'
+            )
+            print(
+                f'pulgar: (',
+                f'{hand_landmarks.landmark[mp_hands.HandLandmark.THUMB_TIP].x * image_width}, '
+                f'{hand_landmarks.landmark[mp_hands.HandLandmark.THUMB_IP].y * image_hight})'
+            )
+            print(
+                f'pulgar_interno: (',
+                f'{hand_landmarks.landmark[mp_hands.HandLandmark.THUMB_TIP].x * image_width}, '
+                f'{hand_landmarks.landmark[mp_hands.HandLandmark.THUMB_MCP].y * image_hight})'
             )
 
-            mp_drawing.draw_landmarks(
+        mp_drawing.draw_landmarks(
                 annotated_image, hand_landmarks, mp_hands.HAND_CONNECTIONS)
         cv2.imwrite(
             '/tmp/annotated_image_' + str(frame_ID) + '.png', cv2.flip(annotated_image, 1))
@@ -63,70 +89,41 @@ def hand_video(flag, frame):
     annotated_image = image.copy()
     # dibujar resultados de puntos de referencia
     for hand_landmarks in results.multi_hand_landmarks:
-        print('hand_landmarks:', hand_landmarks)
+
         print(
-        f'Index finger tip coordinates: (',
+            f'meñique: (',
+            f'{hand_landmarks.landmark[mp_hands.HandLandmark.PINKY_TIP].x * image_width}, '
+            f'{hand_landmarks.landmark[mp_hands.HandLandmark.PINKY_PIP].y * image_hight})'
+        )
+        print(
+            f'anular: (',
+            f'{hand_landmarks.landmark[mp_hands.HandLandmark.RING_FINGER_TIP].x * image_width}, '
+            f'{hand_landmarks.landmark[mp_hands.HandLandmark.RING_FINGER_PIP].y * image_hight})'
+        )
+        print(
+            f'medio: (',
+            f'{hand_landmarks.landmark[mp_hands.HandLandmark.MIDDLE_FINGER_TIP].x * image_width}, '
+            f'{hand_landmarks.landmark[mp_hands.HandLandmark.MIDDLE_FINGER_PIP].y * image_hight})'
+        )
+        print(
+            f'indice: (',
             f'{hand_landmarks.landmark[mp_hands.HandLandmark.INDEX_FINGER_TIP].x * image_width}, '
-            f'{hand_landmarks.landmark[mp_hands.HandLandmark.INDEX_FINGER_TIP].y * image_hight})'
+            f'{hand_landmarks.landmark[mp_hands.HandLandmark.INDEX_FINGER_PIP].y * image_hight})'
+        )
+        print(
+            f'pulgar: (',
+            f'{hand_landmarks.landmark[mp_hands.HandLandmark.THUMB_TIP].x * image_width}, '
+            f'{hand_landmarks.landmark[mp_hands.HandLandmark.THUMB_IP].y * image_hight})'
+        )
+        print(
+            f'pulgar_interno: (',
+            f'{hand_landmarks.landmark[mp_hands.HandLandmark.THUMB_TIP].x * image_width}, '
+            f'{hand_landmarks.landmark[mp_hands.HandLandmark.THUMB_MCP].y * image_hight})'
         )
         mp_drawing.draw_landmarks(
             annotated_image, hand_landmarks, mp_hands.HAND_CONNECTIONS,
             mp_drawing_styles.get_default_hand_landmarks_style(),
             mp_drawing_styles.get_default_hand_connections_style())
+        
     # darle la vuelta y retornar
     return cv2.flip(annotated_image, 1)
-
-def draw_text(
-        self,
-        frame,
-        font=cv2.FONT_HERSHEY_COMPLEX,
-        font_size=1,
-        font_thickness=2,
-        offset=int(HEIGHT * 0.02),
-        bg_color=(245, 242, 176, 0.85),
-    ):
-        window_w = int(HEIGHT * len(frame[0]) / len(frame))
-
-        (text_w, text_h), _ = cv2.getTextSize(
-            self.sign_detected, font, font_size, font_thickness
-        )
-
-        text_x, text_y = int((window_w - text_w) / 2), HEIGHT - text_h - offset
-
-        cv2.rectangle(frame, (0, text_y - offset), (window_w, HEIGHT), bg_color, -1)
-        cv2.putText(
-            frame,
-            self.sign_detected,
-            (text_x, text_y + text_h + font_size - 1),
-            font,
-            font_size,
-            (118, 62, 37),
-            font_thickness,
-        )
-        return frame
-# Guarde el video si el usuario lo elige
-def vid_save():
-    cap = cv2.VideoCapture(0)
-
-    # Define the codec and create VideoWriter object
-    fourcc = cv2.VideoWriter_fourcc(*'XVID')
-    out = cv2.VideoWriter('output.avi',fourcc, 20.0, (640,480))
-
-    while(cap.isOpened()):
-        ret, frame = cap.read()
-        if ret==True:
-            frame = cv2.flip(frame,0)
-
-            # write the flipped frame
-            out.write(frame)
-
-            cv2.imshow('frame',frame)
-            if cv2.waitKey(1) & 0xFF == ord('q'):
-                break
-        else:
-            break
-
-    # Release everything if job is finished
-    cap.release()
-    out.release()
-    cv2.destroyAllWindows()
