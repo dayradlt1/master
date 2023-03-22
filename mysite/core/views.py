@@ -12,7 +12,6 @@ from .forms import  ImageForm
 import urllib
 import numpy as np
 from script.hand_image_detector import hand_detection
-from script.hand_video_detector import result
 import cv2
 
 from mysite.camera import VideoCamera, gen
