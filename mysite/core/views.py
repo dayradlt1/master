@@ -72,9 +72,6 @@ def video_stream(request):
     content_type='multipart/x-mixed-replace; boundary=frame')
     return vid
 
-def text_cap(request):
-      text=joblib.load(result())
-      return render(request,'text_cap',{'text':text})
 def video_save(request):
     vid = StreamingHttpResponse(gen(WebcamManager(), True), 
     content_type='multipart/x-mixed-replace; boundary=frame')
