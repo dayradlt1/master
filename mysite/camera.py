@@ -5,7 +5,12 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 import cv2
 from script.hand_video_detector import hand_video
 import time
-
+from fastapi import FastAPI, File, UploadFile, Request
+from mysite.script.api.endpoints import processing_images, processing_text
+from mysite.script.utils.save_image_temporal import save_in_disk
+from io import BytesIO
+from fastapi.staticfiles import StaticFiles
+app=FastAPI()
 # toma la imagen de la camara y la convierte a objeto de opencv
 # luego es procesado por gen()
 class VideoCamera(object):
@@ -19,9 +24,17 @@ class VideoCamera(object):
 		success, image = self.video.read()
 		if success:
 			# llama a la detección aquí
-			image = hand_video(success, image)
-
-		return image
+			@app.post("/processing_images")
+			async def call_processing_images(image: UploadFile = File(...)):
+				image_bytes  = await image.read()
+				image_path = save_in_disk(image_bytes)
+				result = await processing_images.processing_images(image_path)
+				return result
+			
+	@app.post("/processing_text")
+	def call_processing_text(tex: str, request: Request):
+		result = processing_text.processing_text(tex, request)
+		return result
 
 
 # generador que guarda el video capturado si se establece la bandera

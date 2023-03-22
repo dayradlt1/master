@@ -25,40 +25,10 @@
             <div class="container-fluid text-center">
                 <div class="grid-container">
                     <div class="text-container">
-                        <p>{{text_cap}}</p>
+                        <p>Text here...</p>
                     </div>
                 </div>
             </div>
-            <script type="text/javascript">
-                var video = document.querySelector(".video-element");
-                var stop_button = false;
-                var go_button =false;
-                if (navigator.mediaDevices.getUserMedia) {
-                    
-                      navigator.mediaDevices.getUserMedia({ video: true })
-                        .then(function (stream) {
-                            document.getElementById("indicador_flecha").style.display = "none";
-                            document.getElementById("indicador_texto").style.display = "none";
-                            video.srcObject = stream;
-                    })
-                }
-                    
-                function stop(e) {
-                    this.stop_button = true;
-                    document.getElementById("indicador_flecha").style.display = "block";
-                    document.getElementById("indicador_texto").style.display = "block";	
-                      var stream = video.srcObject;
-                      var tracks = stream.getTracks();
-        
-                    for (var i = 0; i < tracks.length; i++) {
-                        var track = tracks[i];
-                        track.stop();
-                    }
-        
-                    video.srcObject = null;
-                }
-            </script>
-            <br><br><br>
         </body>
         
 {% endblock %}
