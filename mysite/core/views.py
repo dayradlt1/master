@@ -15,10 +15,7 @@ from script.hand_image_detector import hand_detection
 import cv2
 
 from mysite.camera import VideoCamera, gen
-from mysite.webcam_manager import *
 from django.http import StreamingHttpResponse
-import joblib
-
 
 class Home(TemplateView):
     template_name = 'home.html'
@@ -73,7 +70,7 @@ def video_stream(request):
     return vid
 
 def video_save(request):
-    vid = StreamingHttpResponse(gen(WebcamManager(), True), 
+    vid = StreamingHttpResponse(gen(VideoCamera(), True), 
     content_type='multipart/x-mixed-replace; boundary=frame')
     return vid
 
