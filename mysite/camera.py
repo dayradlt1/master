@@ -1,3 +1,7 @@
+import os
+# ignore lack of gpu for keras
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
+
 import cv2
 from script.hand_video_detector import hand_video
 import time
@@ -29,7 +33,7 @@ def gen(camera, flag):
 		# default format
 		fourcc = cv2.VideoWriter_fourcc(*'XVID')
 		# salida que es un escritor de cv, dado el nombre y el formato, y la resolución
-		out = cv2.VideoWriter('output_' + str(current_time) + '.avi',fourcc, 20.0, (640,480))
+		out = cv2.VideoWriter('output_' + str(current_time) + '.mp4',fourcc, 20.0, (440,280))
 
 		while True:
 			# objeto cv a jpg

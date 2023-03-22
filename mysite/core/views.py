@@ -1,3 +1,7 @@
+import os
+# ignore lack of gpu for keras
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
+
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView, ListView, CreateView
 from django.core.files.storage import FileSystemStorage
@@ -8,10 +12,13 @@ from .forms import  ImageForm
 import urllib
 import numpy as np
 from script.hand_image_detector import hand_detection
+from script.hand_video_detector import result
 import cv2
 
 from mysite.camera import VideoCamera, gen
+from mysite.webcam_manager import *
 from django.http import StreamingHttpResponse
+import joblib
 
 
 class Home(TemplateView):
@@ -66,8 +73,11 @@ def video_stream(request):
     content_type='multipart/x-mixed-replace; boundary=frame')
     return vid
 
+def text_cap(request):
+      text=joblib.load(result())
+      return render(request,'text_cap',{'text':text})
 def video_save(request):
-    vid = StreamingHttpResponse(gen(VideoCamera(), True), 
+    vid = StreamingHttpResponse(gen(WebcamManager(), True), 
     content_type='multipart/x-mixed-replace; boundary=frame')
     return vid
 
