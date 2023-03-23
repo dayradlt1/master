@@ -2,7 +2,15 @@ body{
 	margin: 0;
 	padding: 0;
 }
-
+.h1{
+	color:#ffffff
+}
+.h2{
+	color:#ffffff
+}
+.p{
+	color:#ffffff
+}
 section{
 	width: 100%;
 }
@@ -85,8 +93,8 @@ section{
 
 .text-area{
 	margin: 8px 8px auto;
-	width: 976px;
-	height: 176px;
+	width: 1020 px;
+	height: auto;
 	border: 3px #000 solid;
 	font-family: Courier New;
 	font-size: 35px;
