@@ -20,7 +20,7 @@ class VideoCamera(object):
 		if success:
 			# llama a la detección aquí
 			image = hand_video(success, image)
-
+			
 		return image
 
 
